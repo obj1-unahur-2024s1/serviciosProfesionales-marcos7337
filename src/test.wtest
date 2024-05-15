@@ -1,0 +1,25 @@
+import profesionales.*
+
+// TEST ETAPA 1
+test "etapa 1" {
+	const sanMartin = new Universidad(provincia = "BsAs", honorarios = 3500)
+	const rosario = new Universidad(provincia = "SantaFe", honorarios = 2800)
+	const corrientes = new Universidad(provincia = "Corrientes", honorarios = 4200)
+	const hurlingham = new Universidad(provincia = "BsAs", honorarios = 8800)
+	
+	const juana = new ProfesionalVinculado(universidad = rosario)
+	const melina = new ProfesionalAsociado(universidad = corrientes)
+	const rocio = new ProfesionalLibre(universidad = hurlingham, honorarios = 5000, provincias = #{"SantaFe","Cordoba","BsAs"})
+	const luciana = new ProfesionalLibre(universidad = rosario, honorarios = 3200, provincias = #{"SantaFe","EntreRios"})
+	
+	const monstersInc = new Empresa(honorarios = 3500)
+	monstersInc.contratar(juana)
+	monstersInc.contratar(melina)
+	monstersInc.contratar(rocio)
+	monstersInc.contratar(luciana)
+	
+	assert.equals(2,monstersInc.cuantosEstudiaronEn(rosario))
+	assert.equals(1,monstersInc.cuantosEstudiaronEn(hurlingham))
+	assert.equals(0,monstersInc.cuantosEstudiaronEn(sanMartin))
+
+}
